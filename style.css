@@ -1,0 +1,23 @@
+* {
+    margin: auto;
+    font-family: 'Courier New', Courier, monospace;
+}
+h1 {
+    padding: 20px;
+    text-align: center;
+    color: #f87171;
+}
+
+#gameboard {
+    width: 480px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    gap: 10px;
+}
+
+.gamecells {
+    background-color: pink;
+    width: 150px;
+    height: 150px;
+}
