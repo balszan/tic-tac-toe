@@ -120,43 +120,55 @@ const game = (()=>{
 
         if(currentMove) {
             clickValue.classList.add("x");
-            gameboard.updateGameboard("X",cellIndex);
+            gameboard.updateGameboard("x",cellIndex);
 
         } else {
             clickValue.classList.add("o");
-            gameboard.updateGameboard("O",cellIndex);
+            gameboard.updateGameboard("o",cellIndex);
         }
        
-        console.log(gameboard.getGameboard());
-
-        if(checkWin()) {
-            alert("Winner!")
-            // tutaj jeszcze zresetuj gre albo wqyswietl screen
+        
+        if(checkWin(gameboard.getGameboard())=="x") {
+            alert("Winner is X!");
+        } else if (checkWin(gameboard.getGameboard())=="o") {
+            alert("Winner is O!");
+        } else if (checkWin(gameboard.getGameboard())=="d") {
+            alert("That's a draw!");
         }
         
-        if(checkDraw()) {
-            alert("Draw!")
-             // tutaj jeszcze zresetuj gre albo wqyswietl screen
-        }
+    
 
          // Updates current move 
          currentMove=!currentMove;
          currentMoveField.innerHTML="";
          displayCurrentMove();
 
-
-
     }
 
 
-     const checkWin = () => {
-//add logic 
-// return true if win
-     }
+     const checkWin = (gameboard) => {
 
-     const checkDraw = () => {
-//add logic 
-// return true if draw
+        if(gameboard[0]=="x"&&gameboard[1]=="x"&&gameboard[2]=="x" ||
+        gameboard[3]=="x"&&gameboard[4]=="x"&&gameboard[5]=="x" ||
+        gameboard[6]=="x"&&gameboard[7]=="x"&&gameboard[8]=="x" ||
+        gameboard[0]=="x"&&gameboard[3]=="x"&&gameboard[6]=="x" ||
+        gameboard[1]=="x"&&gameboard[4]=="x"&&gameboard[7]=="x" ||
+        gameboard[2]=="x"&&gameboard[5]=="x"&&gameboard[8]=="x" ||
+        gameboard[0]=="x"&&gameboard[4]=="x"&&gameboard[8]=="x" ||
+        gameboard[2]=="x"&&gameboard[4]=="x"&&gameboard[6]=="x") {
+            return "x";
+        } else if(gameboard[0]=="o"&&gameboard[1]=="o"&&gameboard[2]=="o" ||
+        gameboard[3]=="o"&&gameboard[4]=="o"&&gameboard[5]=="o" ||
+        gameboard[6]=="o"&&gameboard[7]=="o"&&gameboard[8]=="o" ||
+        gameboard[0]=="o"&&gameboard[3]=="o"&&gameboard[6]=="o" ||
+        gameboard[1]=="o"&&gameboard[4]=="o"&&gameboard[7]=="o" ||
+        gameboard[2]=="o"&&gameboard[5]=="o"&&gameboard[8]=="o" ||
+        gameboard[0]=="o"&&gameboard[4]=="o"&&gameboard[8]=="o" ||
+        gameboard[2]=="o"&&gameboard[4]=="o"&&gameboard[6]=="o") {
+            return "o";
+        } else if(gameboard.every(element => element !== '')) {
+            return "d";
+        }
      }
 
     return {

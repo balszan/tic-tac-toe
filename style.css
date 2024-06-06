@@ -46,9 +46,15 @@ button {
 }
 
 .x {
-    background-color: black;
+    background-color: white;
+    background-image: url(svg/cross.svg);
+    background-size: contain;
 }
 
 .o {
-    background-color: red;
+    background-color: white;
+    background-image: url(svg/circle.svg);
+    background-size: contain;
 }
+
+
