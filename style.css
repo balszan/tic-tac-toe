@@ -34,10 +34,21 @@ h3 {
 }
 
 .displayControls {
+    padding: 30px;
     display: grid;
+    background-color: #f87171;
+    gap: 10px;
 }
 
 button {
     margin-top: 20px;
     padding: 20px;
+}
+
+.x {
+    background-color: black;
+}
+
+.o {
+    background-color: red;
 }
