@@ -34,6 +34,9 @@ const gameboard = (()=>{
         const currentMoveContainer = document.querySelector("#currentMove");
         currentMoveContainer.innerHTML = "";
 
+        const winnerField = document.querySelector(".winner"); 
+        winnerField.innerHTML="";
+
         // Clears gameboard
         for(i=0;i<9;i++) {
             updateGameboard("",i)
@@ -93,6 +96,7 @@ const game = (()=>{
     const player1 = createPlayer(displayControls.player1);
     const player2 = createPlayer(displayControls.player2);
 
+
     const currentMoveField = document.querySelector('#currentMove');
 
     // True if player1 turn, false if player2
@@ -129,20 +133,39 @@ const game = (()=>{
        
         
         if(checkWin(gameboard.getGameboard())=="x") {
-            alert("Winner is X!");
+            announceWinner(player1.name.value);
         } else if (checkWin(gameboard.getGameboard())=="o") {
-            alert("Winner is O!");
+            announceWinner(player2.name.value);
         } else if (checkWin(gameboard.getGameboard())=="d") {
-            alert("That's a draw!");
+            announceWinner("nobody");
+        } else {
+            // Updates current move 
+            currentMove=!currentMove;
+            currentMoveField.innerHTML="";
+            displayCurrentMove();
+        } 
+    }
+
+    const announceWinner = (winner) => {
+        const gameboardContainer = document.querySelector("#gameboard");
+        const gameStatus = document.querySelector("#gameStatus");
+        currentMoveField.innerHTML = "";
+        const winnerField = document.createElement("div");
+
+        if(winner=="nobody") {
+            winnerField.innerHTML = "That's a draw! Play again?";
+        } else {
+            winnerField.innerHTML = "The winner is " + winner + "!";
         }
-        
-    
 
-         // Updates current move 
-         currentMove=!currentMove;
-         currentMoveField.innerHTML="";
-         displayCurrentMove();
+        winnerField.classList.add("winner");
+        gameStatus.appendChild(winnerField);
 
+        // Disable gameboard
+        const gamecells = document.querySelectorAll(".gamecells");
+        gamecells.forEach((gamecell)=>{
+            gamecell.removeEventListener('click', game.handleClick, {once: true});
+        })
     }
 
 

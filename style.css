@@ -58,3 +58,10 @@ button {
 }
 
 
+.winner {
+    font-size: 36px;
+    text-align: center;
+    background-color: #fde047;
+    margin: 10px 0 10px 0;
+    font-weight: bolder;
+}
